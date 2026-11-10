@@ -1,0 +1,571 @@
+/* Cores usadas no sistema */
+:root {
+    --fundo: #101014;
+    --card: #1c1c24;
+    --roxo: #9b5cff;
+    --texto: #f5f5f7;
+    --cinza: #a4a4b3;
+    --borda: #34343e;
+}
+
+/* Evita problemas com o tamanho dos elementos */
+* {
+    box-sizing: border-box;
+}
+
+/* Aparência geral das páginas */
+body {
+    margin: 0;
+    padding: 40px 24px;
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: Arial, sans-serif;
+}
+
+/* Mantém o conteúdo centralizado */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--roxo);
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+p {
+    color: var(--cinza);
+}
+
+/* Organiza os botões lado a lado */
+.menu, .botoes, .acoes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.menu {
+    margin: 24px 0 30px;
+}
+
+/* Estilo padrão dos botões e links */
+a, button {
+    display: inline-block;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 8px;
+    background: var(--roxo);
+    color: white;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Destaca o botão quando o mouse passa */
+a:hover, button:hover {
+    filter: brightness(1.15);
+}
+
+/* Botões secundários */
+.secundario, .voltar, .btn-albuns {
+    background: #383844;
+}
+
+/* Vermelho para ações de exclusão */
+.excluir {
+    background: #bd2532;
+}
+
+.acoes form {
+    margin: 0;
+}
+
+/* Permite rolar a tabela em telas pequenas */
+.tabela {
+    overflow-x: auto;
+}
+
+/* Aparência das tabelas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--borda);
+}
+
+th {
+    color: var(--roxo);
+    font-weight: 600;
+}
+
+/* Destaca a linha ao passar o mouse */
+tr:hover td {
+    background: #252530;
+}
+
+/* Espaçamento dos campos nos formulários */
+form label {
+    display: block;
+    margin: 18px 0 8px;
+}
+
+/* Campos de texto, seleção e datas */
+input:not([type="hidden"]):not([type="checkbox"]),
+textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    background: #14141b;
+    color: var(--texto);
+    font: inherit;
+}
+
+/* Borda roxa no campo selecionado */
+input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--roxo);
+    outline-offset: 1px;
+}
+
+/* Deixa a biografia com mais espaço */
+textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+/* Caixa central dos formulários */
+.container:has(> form) {
+    max-width: 600px;
+    padding: 32px;
+    background: var(--card);
+    border-radius: 14px;
+}
+
+/* Ajustes para celular */
+@media (max-width: 600px) {
+    body {
+        padding: 24px 12px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    th, td {
+        padding: 12px;
+    }
+}
+/* A lista precisa de mais largura para caber a tabela com as ações. */
+.container.lista-musicas {
+    max-width: 1060px;
+    padding: clamp(16px, 4vw, 32px);
+    background: var(--card);
+    border-radius: 14px;
+}
+
+.lista-musicas > .acoes {
+    margin: 16px 0 24px;
+}
+
+/* O filtro fica ao lado dos botões quando a tela tem espaço. */
+.lista-musicas > form {
+    display: grid;
+    grid-template-columns: minmax(0, 360px) auto auto;
+    align-items: center;
+    justify-content: start;
+    gap: 10px 12px;
+    margin-bottom: 24px;
+}
+
+.lista-musicas > form > label {
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+/* Em telas estreitas, só a tabela rola para o lado. */
+.lista-musicas .tabela {
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+}
+
+.lista-musicas table {
+    min-width: 660px;
+}
+
+.lista-musicas th,
+.lista-musicas td {
+    padding: 14px;
+}
+
+.lista-musicas td .acoes {
+    flex-wrap: nowrap;
+    gap: 8px;
+}
+
+/* Dá respiro entre os campos e separa a dica dos botões. */
+.container.form-musica {
+    padding: clamp(16px, 4vw, 32px);
+}
+
+.form-musica .formulario {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.form-musica .formulario label {
+    margin: 0 0 8px;
+}
+
+.form-musica #dica-duracao {
+    display: block;
+    margin-top: 8px;
+    color: var(--cinza);
+    line-height: 1.4;
+}
+
+.form-musica .formulario > button {
+    justify-self: start;
+    margin-top: 4px;
+}
+
+/* Voltar fica separado da ação de salvar. */
+.form-musica > a:last-child {
+    margin-top: 12px;
+    background: #383844;
+}
+
+@media (max-width: 600px) {
+    .lista-musicas > form {
+        grid-template-columns: auto auto;
+        justify-content: stretch;
+    }
+
+    .lista-musicas > form > select {
+        grid-column: 1 / -1;
+    }
+
+    .lista-musicas > form > button,
+    .lista-musicas > form > a {
+        justify-self: start;
+    }
+}
+/* A página inicial tem seu próprio layout. */
+.ravenyx-inicio {
+    --rosa-ravenyx: #ff9add;
+    --borda-ravenyx: #392d49;
+    display: grid;
+    grid-template-columns: 208px minmax(0, 1fr);
+    min-height: 100vh;
+    padding: 0;
+    background: radial-gradient(ellipse at top right, #24132d, transparent 38rem),
+                #0d0c13;
+}
+
+.ravenyx-inicio :focus-visible {
+    outline: 2px solid #ffb2ea;
+    outline-offset: 4px;
+}
+
+/* O menu fica à mão enquanto a pessoa percorre a biblioteca. */
+.inicio-lateral {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    min-height: 100vh;
+    padding: 24px 16px;
+    border-right: 1px solid var(--borda-ravenyx);
+    background: #12111a;
+}
+
+.inicio-lateral .inicio-marca {
+    padding: 8px 10px;
+    background: transparent;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+}
+
+.inicio-marca::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 12px;
+    border: 2px solid var(--rosa-ravenyx);
+    transform: rotate(45deg);
+}
+
+.inicio-lateral nav {
+    display: grid;
+    gap: 6px;
+    margin-top: 20px;
+}
+
+.inicio-lateral nav a {
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #cec3da;
+}
+
+.inicio-lateral nav a:hover,
+.inicio-lateral nav a[aria-current="page"] {
+    border-color: #65437c;
+    background: #291c36;
+    color: #fff;
+}
+
+.inicio-conteudo {
+    width: min(100%, 1240px);
+    margin: 0 auto;
+    padding: 24px clamp(16px, 4vw, 48px) 48px;
+}
+
+.inicio-topo {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.inicio-busca {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 8px;
+    width: min(100%, 480px);
+}
+
+.inicio-busca label {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #cec3da;
+    font-size: 0.9rem;
+}
+
+/* O disco do banner é desenhado no CSS. */
+.inicio-banner {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: clamp(24px, 5vw, 54px);
+    border: 1px solid #67417d;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at top left, #6b2464, transparent 80%),
+                linear-gradient(120deg, #3b1d55, #1c1832);
+}
+
+.inicio-banner::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    right: -24px;
+    width: min(42%, 300px);
+    aspect-ratio: 1;
+    border: 1px solid #b56cb5;
+    border-radius: 50%;
+    background: radial-gradient(circle, #211026 0 4%, #d56cb7 5% 13%, transparent 14%),
+                repeating-radial-gradient(circle, #24172c 0 4px, #583364 5px 7px);
+    opacity: 0.65;
+    transform: translateY(-50%);
+}
+
+.inicio-banner .inicio-rotulo {
+    margin: 0;
+    color: #ffc2e9;
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.inicio-banner h1 {
+    margin: 10px 0;
+    color: #fff;
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    letter-spacing: -0.05em;
+}
+
+.inicio-banner p {
+    color: #f2e3f4;
+}
+
+.inicio-banner a,
+.inicio-busca button {
+    background: linear-gradient(110deg, #e3aeff, #ffacd9);
+    color: #25102f;
+    font-weight: bold;
+}
+
+.inicio-banner a {
+    margin-top: 8px;
+}
+
+.inicio-secao {
+    margin-top: 32px;
+}
+
+.inicio-titulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.inicio-titulo h2 {
+    margin: 0;
+}
+
+/* Os cards se reorganizam conforme a largura da tela. */
+.inicio-grade {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.inicio-card {
+    min-width: 0;
+    overflow: hidden;
+    padding-bottom: 14px;
+    border: 1px solid var(--borda-ravenyx);
+    border-radius: 14px;
+    background: #181521;
+}
+
+.inicio-card:hover,
+.inicio-card:focus-within {
+    border-color: #9864ac;
+}
+
+.inicio-card h3,
+.inicio-card p {
+    margin: 12px 14px 0;
+    overflow-wrap: anywhere;
+}
+
+.inicio-card > a {
+    margin: 12px 14px 0;
+}
+
+.inicio-arte {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: radial-gradient(ellipse at top right, #6b2d6b, #211a35 75%);
+    color: #f0a7e7;
+    font-size: 2.5rem;
+}
+
+.inicio-ranking {
+    padding-left: 28px;
+}
+
+.inicio-ranking li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--borda-ravenyx);
+}
+
+.inicio-ranking a {
+    padding: 4px;
+    background: transparent;
+    color: var(--rosa-ravenyx);
+}
+
+.inicio-ranking span {
+    margin-left: 8px;
+    color: #cec3da;
+}
+
+/* A capa inteira cabe no card, inclusive quando o recorte é quadrado. */
+.inicio-card .capa-ravenyx {
+    object-fit: contain;
+    background: #13101a;
+}
+
+.inicio-card > .capa-spotify-inicio {
+    display: block;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.spotify-ravenyx {
+    display: block;
+    width: 100%;
+    height: 152px;
+    border: 0;
+}
+
+.titulo-faixa-ravenyx {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.lista-musicas .capa-faixa-link {
+    display: inline-flex;
+    padding: 0;
+    background: transparent;
+}
+
+.capa-faixa {
+    display: block;
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+    .ravenyx-inicio {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .inicio-lateral {
+        position: static;
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--borda-ravenyx);
+    }
+
+    .inicio-lateral nav {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 620px) {
+    .inicio-grade {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .inicio-busca input {
+        grid-column: 1 / -1;
+    }
+
+    .inicio-banner::after {
+        opacity: 0.3;
+    }
+}
+
+@media (max-width: 380px) {
+    .inicio-grade {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

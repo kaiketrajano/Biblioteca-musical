@@ -1,0 +1,37 @@
+package br.com.sistemamusical.conexao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class Conexao {
+
+    private static final String URL =
+        "jdbc:postgresql://localhost:5432/sistema_musical";
+
+    private static final String USUARIO = "postgres";
+
+    private static final String SENHA =
+        System.getenv("DB_PASSWORD");
+
+    public static Connection conectar() throws SQLException {
+
+        if (SENHA == null || SENHA.isBlank()) {
+            throw new SQLException(
+                "A variável DB_PASSWORD não foi configurada."
+            );
+        }
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new SQLException(
+                "Driver PostgreSQL não encontrado.", e
+            );
+        }
+
+        return DriverManager.getConnection(
+            URL, USUARIO, SENHA
+        );
+    }
+}
